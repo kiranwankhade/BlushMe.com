@@ -43,7 +43,7 @@ import {
         color:'#CC913F'
     }
     return (
-      <Box>
+      <Box bg={useColorModeValue('#292929', '#976d33')}>
         <Flex
           bg={useColorModeValue('#292929', '#976d33')}
           color={useColorModeValue('gray.600', 'white')}
@@ -53,7 +53,9 @@ import {
           borderBottom={1}
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.900')}
-          align={'center'} >
+          align={'center'} 
+          width='98%'  
+          margin="auto">
           <Flex
             flex={{ base: 1, md: 'auto' }}
             ml={{ base: -2 }}

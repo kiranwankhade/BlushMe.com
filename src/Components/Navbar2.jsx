@@ -5,6 +5,7 @@ import {
     IconButton,
     Button,
     Stack,
+    HStack,
     Collapse,
     Icon,
     Link,
@@ -28,15 +29,17 @@ import {
     return (
       <Box>
         <Flex
-          bg={useColorModeValue('white', 'gray.800')}
-          color={useColorModeValue('gray.600', 'white')}
+          bg={useColorModeValue('#141414', '#141414')}
+          color={useColorModeValue('#976d33', 'black')}
           minH={'60px'}
           py={{ base: 2 }}
           px={{ base: 4 }}
           borderBottom={1}
           borderStyle={'solid'}
-          borderColor={useColorModeValue('gray.200', 'gray.900')}
-          align={'center'}>
+          borderColor={useColorModeValue('black', 'black')}
+          align={'center'}
+          marginTop="-1px"
+          >
           <Flex
             flex={{ base: 1, md: 'auto' }}
             ml={{ base: -2 }}
@@ -51,44 +54,12 @@ import {
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <Text
-              textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-              fontFamily={'heading'}
-              color={useColorModeValue('gray.800', 'white')}>
-              Logo
-            </Text>
-  
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
             </Flex>
           </Flex>
   
-          <Stack
-            flex={{ base: 1, md: 0 }}
-            justify={'flex-end'}
-            direction={'row'}
-            spacing={6}>
-            <Button
-              as={'a'}
-              fontSize={'sm'}
-              fontWeight={400}
-              variant={'link'}
-              href={'#'}>
-              Sign In
-            </Button>
-            <Button
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              href={'#'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Sign Up
-            </Button>
-          </Stack>
+        
         </Flex>
   
         <Collapse in={isOpen} animateOpacity>
@@ -99,16 +70,16 @@ import {
   }
   
   const DesktopNav = () => {
-    const linkColor = useColorModeValue('gray.600', 'gray.200');
-    const linkHoverColor = useColorModeValue('gray.800', 'white');
-    const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+    const linkColor = useColorModeValue('#976d33', '#141414');
+    const linkHoverColor = useColorModeValue('#976d33', '#141414');
+    const popoverContentBgColor = useColorModeValue('white', '#141414');
   
     return (
-      <Stack direction={'row'} spacing={4}>
+      <Stack direction={'row'} spacing={4} >
         {NAV_ITEMS.map((navItem) => (
-          <Box key={navItem.label}>
+          <Box key={navItem.label}  >
             <Popover trigger={'hover'} placement={'bottom-start'}>
-              <PopoverTrigger>
+              <PopoverTrigger >
                 <Link
                   p={2}
                   href={navItem.href ?? '#'}
@@ -116,8 +87,10 @@ import {
                   fontWeight={500}
                   color={linkColor}
                   _hover={{
-                    textDecoration: 'none',
-                    color: linkHoverColor,
+                    textDecoration: 'underline',
+                    textDecorationColor:'pink.600',
+                    textUnderlineOffset:' 20px',
+                    textDecorationThickness:'4px'
                   }}>
                   {navItem.label}
                 </Link>
@@ -125,13 +98,15 @@ import {
   
               {navItem.children && (
                 <PopoverContent
+                  marginTop="3px"
                   border={0}
                   boxShadow={'xl'}
                   bg={popoverContentBgColor}
                   p={4}
                   rounded={'xl'}
-                  minW={'sm'}>
-                  <Stack>
+                  width = {"unset"}
+                  maxW= {"unset"}>
+                  <Stack  display={'grid'} gridTemplateColumns={'repeat(3,250px)'}  spacing={0} >
                     {navItem.children.map((child) => (
                       <DesktopSubNav key={child.label} {...child} />
                     ))}
@@ -146,6 +121,14 @@ import {
   };
   
   const DesktopSubNav = ({ label, href, subLabel }) => {
+    
+    let liItem ={
+      textAlign:"left",
+      padding:"5px",
+      lineHeight:"25px",
+      color:'black'
+    }
+
     return (
       <Link
         href={href}
@@ -154,17 +137,26 @@ import {
         p={2}
         rounded={'md'}
         _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
-        <Stack direction={'row'} align={'center'}>
+        <Stack direction={'row'} width={'250px'}>
           <Box>
             <Text
+              color={'black'}
               transition={'all .3s ease'}
               _groupHover={{ color: 'pink.400' }}
-              fontWeight={500}>
+              fontWeight={500} textAlign='left'>
               {label}
+            </Text>            
+            <Text fontSize={'md'}> <ul>
+            {subLabel.map((labels) => (
+                    
+                    <li  style={liItem}>
+                      {labels}
+                    </li>
+               ))}
+            </ul>
             </Text>
-            <Text fontSize={'sm'}>{subLabel}</Text>
           </Box>
-          <Flex
+          {/* <Flex
             transition={'all .3s ease'}
             transform={'translateX(-10px)'}
             opacity={0}
@@ -173,7 +165,7 @@ import {
             align={'center'}
             flex={1}>
             <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
-          </Flex>
+          </Flex> */}
         </Stack>
       </Link>
     );
@@ -228,7 +220,7 @@ import {
             pl={4}
             borderLeft={1}
             borderStyle={'solid'}
-            borderColor={useColorModeValue('gray.200', 'gray.700')}
+            borderColor={useColorModeValue('black', 'black')}
             align={'start'}>
             {children &&
               children.map((child) => (
@@ -244,41 +236,230 @@ import {
   
   const NAV_ITEMS = [
     {
-      label: 'Inspiration',
+      label: 'MAKEUP',
       children: [
         {
-          label: 'Explore Design Work',
-          subLabel: 'Trending Design to inspire you',
+          label: 'LIPS',
+          subLabel: [
+            'LIPSTICK',
+            'WONDER WOMEN LIPSTICK RANGE',
+            'LIP CARE',
+            'LIQUID LIP COLOURS',
+            'LIP GLOSS & LINERS',
+            'VALUE SETS',
+            'GIFTING'
+          ],
           href: '#',
         },
         {
-          label: 'New & Noteworthy',
-          subLabel: 'Up-and-coming Designers',
+          label: 'FACE',
+          subLabel: [
+            'PRIMERS',
+            'POWDERS/COMPACT',
+            'FOUNDATION && BB CREAM',
+            'CONCEALERS & CORRECTRS',
+            'BLUSH',
+            'HIGHLIGHTERS & CONTOUR',
+            'BRONZER',
+            'FACE PALETTES',
+            'VALUE SETS',
+          ],
+          href: '#',
+        },
+        {
+          label: 'EYES',
+          subLabel: [
+            'EYELINERS',
+            'KAJAL',
+            'EYEBROWS',
+            'EYESHADOW',
+            'MASCARA',
+            'EYESHADOW PALETTES',
+            'VALUE SETS',
+          ],
           href: '#',
         },
       ],
     },
     {
-      label: 'Find Work',
+      label: 'BRUSHES',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
+          label: 'FACE BRUSHES',
+          subLabel: [
+            'Blend Trends Face Brush- 001 Blush',
+            'Blend Trend Face Brush - 003 Contour',
+            'Blend Trend Face Brush - 006 Highlighter',
+            'Blend Trend Face Brush - 007 Powder',
+            'Blend Trend Foundation Brush - 052 Kabuki',
+            'Blend Trend Dual Face Brush - 075 Powder + Foundation',
+          ],
           href: '#',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
+          label: 'EYES BRUSHES',
+          subLabel: [
+            'Blend Trend Eyeshadow Brush - 041 Flat',
+            'Blend Trend Eyeshadow Brush - 042 Round',
+            'Blend Trend Eyeshadow Brush - 043 Round Xl',
+            'Blend Trend Dual Eyeshadow Brush - 412 Flat + Round',
+            'Blend Trend Dual Eyeshadow Brush - 413 Flat + Round Xl',
+          ],
           href: '#',
         },
       ],
     },
     {
-      label: 'Learn Design',
-      href: '#',
+      label: 'SKINCARE',
+      children: [
+        {
+          label:"MOISTURIZERS",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"SUNSCREEN",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"SETTING MISTS",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"COFFEE CULTURE RANGE",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"SHEET MASK COMBO",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"CITRUS GOT REAL RANGE",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"AQUAHOLIC RANGE",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"MASKS",
+          subLabel:[],
+          href:'#'
+        }
+      ],
+    },
+    ,
+    {
+      label: 'GIFITING',
+      children: [
+        {
+
+          label:"BLUSHME MERCH STATION",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"MAKEUP KITS",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"BESTSELLERS",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"VALUE SETS",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"SUGAR SETS",
+          subLabel:[],
+          href:'#'
+        },
+        {
+          label:"E-GIFT CARDS",
+          subLabel:[],
+          href:'#'
+        },
+      ],
     },
     {
-      label: 'Hire Designers',
-      href: '#',
+      label: 'BLOG',
+      children: [
+        {
+          label: 'MAKEUP',
+          subLabel: [
+            "FACE",
+            "EYES",
+            "LIPS",
+            "BRIDES",
+            "NAILS",
+           " HOW TO's",
+          ],
+          href: '#',
+        },
+        {
+          label: 'SKIN',
+          subLabel: [
+            "SKIN TYPE",
+            "SKIN CONCERNS",
+            "HOME REMEDIES & DIYs",
+          ],
+          href: '#',
+        },
+        {
+          label:'HAIR',
+          subLabel:[
+            "HAIR CARE",
+            "STYLING",
+           " HAIR COLOUR",
+          ],
+          href:'#'
+        },
+        {
+          label:' LIFESTYLE',
+          subLabel:[
+            "HEALTH & WELLNESS",
+            "RRELATIONSHIPS",
+          ],
+          href:'#'
+        },
+        {
+          label:'FASHION',
+          subLabel:[
+            "TRENDS",
+            "CELEBRITIES",
+          ],
+          href:'#'
+        }
+      ],
+    },
+    {
+      label: 'OFFERS',
+      // children: [
+      //   {
+      //     label: '',
+      //     subLabel: [],
+      //     href: '#',
+      //   }
+      // ],
+    },
+    {
+      label: 'STORES',
+      // children: [
+      //   {
+      //     label: '',
+      //     subLabel: [],
+      //     href: '#',
+      //   }
+      // ],
     },
   ];
