@@ -7,7 +7,7 @@ import {
     Stack,
     Collapse,
     Icon,
-   Popover,
+    Popover,
     PopoverTrigger,
     PopoverContent,
     useColorModeValue,
@@ -45,6 +45,7 @@ import {
     return (
       <Box bg={useColorModeValue('#292929', '#976d33')}>
         <Flex
+        //  position={"fixed"}
           bg={useColorModeValue('#292929', '#976d33')}
           color={useColorModeValue('gray.600', 'white')}
           minH={'60px'}
@@ -70,6 +71,7 @@ import {
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} gap={10}>
+            <Link to={"/"}>
             <Image
                 boxSize='150px'
                 objectFit='cover'
@@ -77,6 +79,8 @@ import {
                 alt='logo'
                 width='250px'
                 height='60px'/>
+            </Link>
+           
 
             <InputGroup size="md" alignItems={{base: 'center'}}>
                 <Input color={"#976d33"} width="450px" borderRightRadius="none" borderRight="none" _hover={'pink.200'}  variant="outline" borderColor={"#976d33"} size="md" placeholder={`Try "Liquid lipstick"`} focusBorderColor='#976d33'  _placeholder={{ opacity: 1, color: '#976d33' }}/>
