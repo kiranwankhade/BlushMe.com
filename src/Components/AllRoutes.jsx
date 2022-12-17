@@ -7,6 +7,8 @@ import Wishlist from "../Pages/Wishlist";
 import Cart from "../Pages/Cart";
 import NotFound from "../Pages/NotFound";
 
+import OTP from "../Pages/OTP"
+
 
 function AllRoutes() {
   return (
@@ -16,6 +18,7 @@ function AllRoutes() {
       <Route path="/offer" element={<Offer />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/otp" element={<OTP/>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

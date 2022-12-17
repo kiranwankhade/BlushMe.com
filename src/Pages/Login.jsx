@@ -59,7 +59,11 @@ const Login = () => {
                 {/* <div> */}
                   <InputGroup marginTop={4} >
                     <InputLeftAddon  padding={6} borderColor='#d8d8d8' fontWeight={700}  children='+91' />
-                    <Input focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} type='tel' placeholder='Mobile Number' maxlength="10" minLength='10' onChange={(e)=>{setMobi(e.target.value)}}/>
+                    <Input focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} type='text' placeholder='Mobile Number' maxlength="10" minLength='10' onChange={(e)=>{setMobi(e.target.value)}}/>
+                  
+                    {/* <Input focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} type='tel' placeholder='Mobile Number' maxlength="10" minLength='10' pattern="([0-9]|[0-9]|[0-9])" onChange={(e)=>{setMobi(e.target.value)}}/> */}
+                    {/* <input type="text" maxlength="10" 
+                   pattern="\d{10}"  style={{backgroundColor:"transparent", border:'1px solid #d8d8d8' , borderTopRightRadius:"8px" , borderBottomRightRadius:"8px" , borderLeft:"none" , }} placeholder='Mobile Number'/> */}
                   </InputGroup>
                 {/* </div> */}
                  
@@ -69,7 +73,7 @@ const Login = () => {
               </div>
               
               <Link to={'/otp'} >
-                <Button backgroundColor='black' color='white' marginTop='20px' variant='solid' disabled>SEND ME OTP</Button></Link>
+                <Button backgroundColor='black' color='white' marginTop='20px' variant='solid' _hover={'black'} disabled={!mobi}>SEND ME OTP</Button></Link>
               
               <Divider borderColor={'grey'} width='90%' margin='auto' marginTop='20px'/>
 
@@ -79,11 +83,11 @@ const Login = () => {
               </label>
               {/* <Checkbox defaultChecked >Get important updates on Whatsapp <span color="green">Terms and Conditions</span></Checkbox> */}
 
-              <Text width='90%' margin='auto' align={'right'}>Need Help?<span style={{color:"#fc2f92"}}> Contact Us</span></Text>
+              <Text width='90%' margin='auto' marginTop='5px' align={'right'}>Need Help?<span style={{color:"#fc2f92"}}> Contact Us</span></Text>
 
-              <Divider borderColor={'grey'} width='90%' margin='auto' marginTop='20px'/>
+              <Divider borderColor={'grey'} width='90%' margin='auto' marginTop='10px'/>
               
-              <Text width='90%' margin='auto' align={'right'}>By Signing up or logging in, you agree to our<span style={{color:"#fc2f92"}}> Terms and Conditions</span></Text>
+              <Text width='90%' margin='auto' >By Signing up or logging in, you agree to our<span style={{color:"#fc2f92"}}> Terms and Conditions</span></Text>
 
         </div>
       </div>
