@@ -7,6 +7,10 @@ import Wishlist from "../Pages/Wishlist";
 import Cart from "../Pages/Cart";
 import NotFound from "../Pages/NotFound";
 
+import ItemDetails from "../Pages/ItemDetails";
+
+import Payment from "../Pages/Payment"
+
 import OTP from "../Pages/OTP"
 
 
@@ -19,6 +23,10 @@ function AllRoutes() {
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/otp" element={<OTP/>} />
+      <Route path="/:id" element={<ItemDetails/>} />
+      <Route path="/payment" element={<Payment/>} />
+      
+      
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -1,0 +1,34 @@
+
+.hotDealsCarousal {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 12px;
+  }
+  
+  .slick-slide > div {
+    margin: 0 10px;
+  }
+  .slick-list {
+    margin: 0 -10px;
+  } 
+  
+  .imgcard {
+    width: 'full';
+    border-radius: 8px;
+    overflow: hidden;
+    height:300px;
+    cursor: pointer;
+  }
+  
+
+  
+  .imgcard-top > img {
+    width: 90%;
+    margin:auto;
+    margin-top: 10px;
+    height: "100%";
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  
+
