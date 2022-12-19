@@ -45,7 +45,7 @@ export default function Footer1(){
       }
     return (
         <>
-            <Divider borderColor={'grey.900'} width='90%' margin='auto' marginTop='0px'/>
+            <Divider borderColor={'grey.900'} width='90%' margin='auto' marginTop='15px'/>
             <div style={{display:'flex', alignItems:'center' , justifyItems:'flex-start' ,width:'90%',margin:'auto',marginTop:'20px'}} >
                  <h1 style={{fontSize:'18px', fontWeight:'600'}}>READ MORE ABOUT SUGAR COSMETICS</h1>
                  <button style={{fontSize:'20px', marginLeft:'10px',color:'#fb3380', cursor:'pointer'}} onClick={handleReadMore}><FaAngleRight/></button>

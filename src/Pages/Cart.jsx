@@ -16,16 +16,36 @@ import { Box, Flex, Grid, GridItem,
     export default function Cart () {
     
         const [items,setItems] = useState([])
-      
+
+        const [val, setVal] = useState(0)
+        
+        // setVal(cartItemPrice+152)
+
+        const [apply,setApply] = useState("");
+
+        const [alertMessage,setAlertMessage] = useState("")
+
+        // const [final,setFinal] = useState(firstTotal);
+        const [final,setFinal] = useState(val)
+
+        const [color,setColor] = useState("")
         useEffect(() => {
             fetchData();
             console.log("data",items)
-        }, []);
+        }, [val]);
     
         const fetchData = async () => {
             try {
             const res = await axios.get(`https://busy-peplum-fawn.cyclic.app/cart`);
             setItems(res.data);
+            let x=0;
+              for(let i=0;i<res.data.length;i++)
+               {
+                    x=res.data[i].price+x;
+               }
+               setVal(x);
+               setFinal(x+152)
+          
             } catch (err) {
             return console.log(err);
             }
@@ -33,17 +53,17 @@ import { Box, Flex, Grid, GridItem,
     
       console.log("after useEffect",items)
     
-      const hideDiv = {
-        display:'none',
-        width:'90%',
-        margin:"auto",
-        marginTop:'20px',
-        
-    }
+        const hideDiv = {
+            display:'none',
+            width:'90%',
+            margin:"auto",
+            marginTop:'20px',
+        }
     
         const [angle,setAngle] = useState(false);
     
-        const [apply,setApply] = useState("")
+       
+        
     
         const handleReadMore = () =>{
             const targetDiv = document.getElementById("hideDiv");
@@ -57,29 +77,54 @@ import { Box, Flex, Grid, GridItem,
               }
         }
     
-        const cartItemPrice = items.reduce(function(acc,el){
-            return acc+el.price;
-        },0);
-    
-        const [total,setTotal] = useState(0)
+        
 
-        const applypromo = (cartItemprice) => {
+        // console.log("FirstFinalTotal",final)
+
+        // setTotal(firstTotal)
+
+        const applyPromoFunc = (val) => {
+            console.log("apply",apply)
+            if(apply === "BLUSHME123"){
+                let dis = (30 / 100);
+                console.log("dis",dis)
+                let totalValue = Math.floor(val - (val * dis))
+                
+                // setVal(totalValue)
+                setFinal(totalValue)
+                
+                // console.log("total",totalValue)
+                setAlertMessage("Applied promo discount");
+                setColor("green")
+                // alert("Applied promo discount")
+            }
             
-            // if(apply === "BLUSHME123"){
-            //     let dis = (30 / 100);
-            //     console.log("dis",dis)
-            //     let totalValue = cartItemprice - (cartItemprice * dis)
-            //     setTotal(totalValue)
-            //     // console.log("total",totalValue)
-            //     alert("Applied promo discount")
-            // }
-            
-            // else{
-            //     alert("promo not applicable")
-            // }
+            else{
+                // alert("promo not applicable")
+                setAlertMessage("Promo not applicable");
+                setColor("red")
+            }
         }
     
-    
+        
+        const handleRemove = (id) => {
+            return axios.delete(`https://busy-peplum-fawn.cyclic.app/cart/${id}`);
+        }
+
+        const removeFuc = (id) => {
+            handleRemove(id);
+            fetchData();
+        }
+
+        const paymentFunc = (final) => {
+            let obj = {
+                total:final,
+                totalItems: items.length
+            }
+
+            localStorage.setItem("priceTotal",JSON.stringify(obj));
+        }
+
         return (
             <>
     
@@ -94,13 +139,12 @@ import { Box, Flex, Grid, GridItem,
                         </BreadcrumbItem>
                     </Breadcrumb>
                 </Box>
-    
              
                 {/* <Box> */}
                     {
                         items.length== 0 ? <div>
                              <Text width={"80%"} fontSize={25} margin='auto' > Cart is Empty </Text>
-                             <Link to={'/'}><Button  width={"10%"}  margin='auto' display={'block'}  marginBottom={8} marginTop={8} bg={'black'} color='white' padding={2} _hover={'#00000'}> GO TO Back</Button></Link>
+                             <Link to={'/'}><Button  width={"10%"}  margin='auto' display={'block'}  marginBottom={8} marginTop={8} bg={'black'} color='white' padding={2} _hover={'#00000'}> GO HOME</Button></Link>
                         </div> : 
                         <Flex  gap='5' width={"95%"} margin='auto'>
                             <div style={{width:'100%' , margin:'auto',display:'grid' , gridTemplateColumns:'repeat(3,1fr)' , gap:'5px',marginTop:'30px' ,marginBottom:'20px',flex:'6'}}>
@@ -118,7 +162,7 @@ import { Box, Flex, Grid, GridItem,
                                         </div>
                                         <div style={{width:'80%',margin:'auto'}}>
                                             <button style={{backgroundColor:'black',color:'white',padding:'8px', width:'120px',marginTop:'10px',marginBottom:'10px',borderRadius:'10px'}} onClick={()=> {
-                                                // handleRemove(el.id)
+                                                removeFuc(el.id)
                                             }}>REMOVE</button>
                                         </div>
                                     </div>
@@ -130,13 +174,18 @@ import { Box, Flex, Grid, GridItem,
                                 <Text fontSize={25} fontWeight={500} textAlign={'justify'}>APPLY COUPON</Text>
                                 <InputGroup size="md"  gap={2} width="70%" alignItems={'flex-start'} marginTop={5}>
     
-                                    <Input type='text' width="600px" borderColor={"gray"} placeholder={`Enter Coupon`} _placeholder={{ opacity: 1}} onChange={(e)=>setApply(e.target.value)}/>
+                                    <Input type='text' width="600px" borderColor={"gray"} placeholder={`Enter Coupon`} _placeholder={{ opacity: 1}} onChange={(e)=>setApply(e.target.value)} value={apply}/>
     
     
-                                    <Button color={"white"} bg={'black'} _hover='none' onClick={ applypromo(cartItemPrice)}> APPLY</Button>
+                                    <Button color={"white"} bg={'black'} _hover='none' onClick={()=>{
+                                        let total = val +152;
+                                        applyPromoFunc(total)}}
+                                    > APPLY</Button>
     
                                 </InputGroup>
-    
+                                
+                                <Text fontSize={20} marginTop={2} color={color} textAlign='justify'>{alertMessage}</Text>
+
                                 <Divider marginTop={5} variant="dashed" borderColor="gray.500"/>
     
                                 <div style={{display:'flex', alignItems:'flex-start' , justifyItems:'flex-start' ,marginTop:'10px' , marginBottom:'10px'}} >
@@ -152,7 +201,7 @@ import { Box, Flex, Grid, GridItem,
                                 <Box width={"80%"} >
                                     <Flex gap={2} justifyContent='space-between' fontSize={20}>
                                         <Text>Sub Total</Text>
-                                        <Text>₹ {cartItemPrice}</Text>
+                                        <Text>₹ {val}</Text>
                                     </Flex>
                                     <Flex  gap={2} justifyContent='space-between' fontSize={20}>
                                         <Text>Tax</Text>
@@ -166,13 +215,13 @@ import { Box, Flex, Grid, GridItem,
     
                                     <Flex  gap={2} justifyContent='space-between' fontSize={20}>
                                         <Text>Total Price</Text>
-                                        <Text>₹ {cartItemPrice + 152}</Text>
+                                        <Text>₹ {final}</Text>
                                     </Flex>
     
                                 </Box>
 
                                 <Link to={'/payment'}>
-                                    <Button width={"30%"} marginLeft={8} margin='auto' display={'block'}  alignItems={'justify'} marginBottom={8} marginTop={8} bg={'black'} color='white' padding={2} _hover={'#00000'}> Go To Payment</Button>
+                                    <Button width={"30%"} marginLeft={8} margin='auto' display={'block'}  alignItems={'justify'} marginBottom={8} marginTop={8} bg={'black'} color='white' padding={2} _hover={'#00000'} onClick={paymentFunc(final)}> Go To Payment</Button>
                                 </Link>
                             </Box>
     
@@ -183,5 +232,5 @@ import { Box, Flex, Grid, GridItem,
                 
               {/* </Flex> */}
             </>
-        )
+        );
     }

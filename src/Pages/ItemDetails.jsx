@@ -84,7 +84,7 @@ export default function ItemDetails(){
     const [angle,setAngle] = useState(false)
 
       const handleReadMore = () =>{
-        const targetDiv = document.getElementById("hideDiv");
+        const targetDiv = document.getElementById("disHideDiv");
         // document.getElementById("hideDiv").style.display = "block"
         if (targetDiv.style.display !== "none") {
             targetDiv.style.display = "none";
@@ -181,7 +181,7 @@ export default function ItemDetails(){
                         <h1 style={{fontSize:'18px', fontWeight:'600'}}>Description</h1>
                         <button style={{fontSize:'20px', marginLeft:'10px',color:'#fb3380', cursor:'pointer'}} onClick={handleReadMore}>{angle ? <FaAngleDown/>:<FaAngleRight/>}</button>
                     </div>
-                    <div id="hideDiv" style={hideDiv}>
+                    <div id="disHideDiv" style={hideDiv}>
                         <p style={{textAlign:'justify'}}>{description}</p>
                     </div>
                     <Divider variant="dashed" borderColor="gray.500"/>

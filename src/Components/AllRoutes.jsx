@@ -9,6 +9,8 @@ import NotFound from "../Pages/NotFound";
 
 import ItemDetails from "../Pages/ItemDetails";
 
+import LoginForm from "../Pages/LoginForm"
+
 import Payment from "../Pages/Payment"
 
 import OTP from "../Pages/OTP"
@@ -19,6 +21,7 @@ function AllRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/loginForm" element={<LoginForm />} />
       <Route path="/offer" element={<Offer />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/cart" element={<Cart />} />

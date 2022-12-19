@@ -34,7 +34,10 @@ import {
 
   import {MdOutlineLocalOffer} from "react-icons/md"
 
+  import axios from 'axios';
+
   import {BsHandbag} from "react-icons/bs"
+import { useState,useEffect } from 'react';
   
   export default function Navbar1() {
     const { isOpen, onToggle } = useDisclosure();
@@ -42,6 +45,18 @@ import {
         fontSize:"20px",
         color:'#CC913F'
     }
+
+    // const [serverFirst,setServerFirst] = useState([])
+
+    // useEffect(() => {
+    //   fetch(`https://busy-peplum-fawn.cyclic.app/firstName`)
+    //     .then((res) => res.json())
+    //     .then((res) => setServerFirst(res))
+    //     .catch((err) => console.log(err))
+    // }, [])
+    let firstName =  JSON.parse(localStorage.getItem("FirstName")) || "";
+    console.log("serverFirst",firstName)
+
     return (
       <Box bg={useColorModeValue('#292929', '#976d33')}>
         <Flex
@@ -92,9 +107,12 @@ import {
                 <Stack direction={'row'} spacing={20} align="center">
                     <div style={{display:"flex", flexDirection:"row", alignItems:"center", gap:"10px"}}>
                         <Icon  style={linkStyle} as={FaUserCircle} /> 
-                        <Link to='/login' style={linkStyle}>
-                        Login/Registration
-                        </Link>
+                        {
+                          firstName==="" ?  <Link to='/login' style={linkStyle}>
+                                                  Login/Registration
+                                              </Link> : <Text style={linkStyle}>{firstName}</Text>
+                        }
+                       
                     </div>
                     <div style={{display:"flex", flexDirection:"row", alignItems:"center", gap:"20px"}}>
                         {NAV_ITEMS.map((navItem) => (

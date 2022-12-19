@@ -20,7 +20,7 @@ function OTP(){
         if(otp === "1234"){
             setAlertMessage("login Successfully");
             setColor("green")
-            navigate("/")
+            navigate("/loginForm")
         }else{
             setAlertMessage("Given otp is wrong");
             setColor("red")
