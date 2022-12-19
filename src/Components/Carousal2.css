@@ -1,0 +1,76 @@
+
+.Carousal2 {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 12px;
+}
+
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+} 
+
+
+.slick-arrow:before {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+
+.card {
+  border: 1px solid #fff;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+
+  height: 430px;
+  color: black;
+  cursor: pointer;
+}
+
+.card-top h1 {
+  font-size: 1rem;
+  /* margin: 15px; */
+}
+
+.card-top > img {
+  width: 70%;
+  margin:auto;
+  margin-top: 10px;
+  height: 200px;
+  object-fit: cover;
+  background: white;
+  border-radius: 12px;
+}
+
+.card-bottom {
+  margin: 10px 0px;
+  display: flex;
+  justify-content: space-between;
+  /* gap: 10px; */
+  padding: 5px;
+}
+
+.card-bottom>button{
+    width: 120px;
+    background-color: black;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.category {
+  position: relative;
+}
+.category::before {
+  content: '';
+  background: rgb(255, 61, 61);
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  height: 2px;
+}
