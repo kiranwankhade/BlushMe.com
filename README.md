@@ -39,7 +39,19 @@ npm start
 
 ##Some Images of Website 
 
-![]
+#Home Page
 
+![ss1](https://user-images.githubusercontent.com/49937312/211381097-66c23f36-01c7-4866-b0af-0b9173dea873.png)
 
+![ss2](https://user-images.githubusercontent.com/49937312/211381517-e9e629ad-22a1-45a1-912e-3b9cb1f5e19e.png)
 
+## Login
+
+![ss3](https://user-images.githubusercontent.com/49937312/211382031-4b0f3cfd-743b-4db1-b5f6-89481c613943.png)
+
+## cart
+
+![Screenshot (16)](https://user-images.githubusercontent.com/49937312/211382230-0754de46-7af2-4c8b-bb0f-84e6b3bc9c42.png)
+
+# Payment
+![Screenshot (19)](https://user-images.githubusercontent.com/49937312/211382257-3815e24a-5406-480b-8ec6-94e8a2c67c73.png)
