@@ -49,7 +49,7 @@ npm start
 
 ![ss3](https://user-images.githubusercontent.com/49937312/211382031-4b0f3cfd-743b-4db1-b5f6-89481c613943.png)
 
-## cart
+## Details
 
 ![Screenshot (16)](https://user-images.githubusercontent.com/49937312/211382230-0754de46-7af2-4c8b-bb0f-84e6b3bc9c42.png)
 
