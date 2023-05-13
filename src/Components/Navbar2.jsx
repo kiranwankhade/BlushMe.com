@@ -71,7 +71,7 @@ import {
   
   const DesktopNav = () => {
     const linkColor = useColorModeValue('#976d33', '#141414');
-    const linkHoverColor = useColorModeValue('#976d33', '#141414');
+    // const linkHoverColor = useColorModeValue('#976d33', '#141414');
     const popoverContentBgColor = useColorModeValue('white', '#141414');
   
     return (

@@ -24,7 +24,6 @@ export default function Footer1(){
 
     const handleReadMore = () =>{
         const targetDiv = document.getElementById("hideDiv");
-        // document.getElementById("hideDiv").style.display = "block"
         if (targetDiv.style.display !== "none") {
             targetDiv.style.display = "none";
             setFooterAngle(false)
@@ -84,12 +83,9 @@ export default function Footer1(){
                    position="relative"
                    width= "180px"
                    height="100px"
-                //    marginLeft= "7%"
-                //    marginRight='7%'
-                display="block"
-                margin="auto"
-                //    marginTop= {10}
-                marginTop="-350px"
+                    display="block"
+                    margin="auto"
+                    marginTop="-350px"
                    src={logo}
                    alt='logo'   />
            
@@ -97,7 +93,6 @@ export default function Footer1(){
               
                {/* icon  */}
                <Box border={'1px solid #141414'}>
-               {/* FaFacebookF,FaTumblr,FaYoutube,FaTwitter,FaInstagram,FaPinterest */}
                     <Box marginTop={100} >
                         <Flex fontSize={25} gap='8' color='#CC913F' justifyContent={'center'}>
                             <FaFacebookF/>

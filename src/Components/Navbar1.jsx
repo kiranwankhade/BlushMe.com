@@ -5,13 +5,8 @@ import {
     IconButton,
     Button,
     Stack,
-    Collapse,
     Icon,
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
     useColorModeValue,
-    useBreakpointValue,
     useDisclosure,
     Image,
     Input, 
@@ -21,8 +16,6 @@ import {
   import {
     HamburgerIcon,
     CloseIcon,
-    ChevronDownIcon,
-    ChevronRightIcon,
     SearchIcon
   } from '@chakra-ui/icons';
 
@@ -34,7 +27,6 @@ import {
 
   import {MdOutlineLocalOffer} from "react-icons/md"
 
-  import axios from 'axios';
 
   import {BsHandbag} from "react-icons/bs"
 import { useState,useEffect } from 'react';

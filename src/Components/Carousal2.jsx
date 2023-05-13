@@ -7,7 +7,7 @@ import './Carousal2.css';
 
 import imgLogo from "../BlushMeLogo.png"
 
-import {FaHeart , FaRegHeart} from "react-icons/fa"
+import {FaHeart } from "react-icons/fa"
 import axios from 'axios';
 
 import {useToast,Text } from "@chakra-ui/react"
@@ -19,11 +19,7 @@ import StarRatings from './StarRatings';
 function Carousal2({data}) {
   const [defaultImage, setDefaultImage] = useState({});
 
-  const [like,setLike] = useState(false);
-
-  const toast = useToast()
-
-  const navigate = useNavigate()
+  const toast = useToast();
 
   const settings = {
     dots: false,
@@ -72,11 +68,8 @@ function Carousal2({data}) {
   console.log("serverFirst",firstName)
 
  
-  // let wishList =  localStorage.setItem("Wish-List",JSON.stringify(data))||[];
-
   const likeFuc = () => {
     toast({
-      // colorScheme:'yellow',
       title: 'Added to wishlist',
       description: "We've added this item to wishlist",
       variant:'subtle',
@@ -90,7 +83,6 @@ function Carousal2({data}) {
   const handleWishlist = (item) => {
     if(firstName === ""){
       toast({
-        // colorScheme:'yellow',
         title: 'Please Login First',
         status:'error',
         duration: 3000,
@@ -120,7 +112,6 @@ function Carousal2({data}) {
   const handleAddCart = (item) => {
     if(firstName === ""){
       toast({
-        // colorScheme:'yellow',
         title: 'Please Login First',
         status:'error',
         duration: 3000,

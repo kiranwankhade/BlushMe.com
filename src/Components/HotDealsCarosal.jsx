@@ -1,15 +1,12 @@
-import React, { useState ,useRef} from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import './HotDealsCarosal.css';
 
-import imgLogo from "../BlushMeLogo.png"
-
 
 function HotDealsCarousal({data}) {
-  const [defaultImage, setDefaultImage] = useState({});
 
 
   const settings = {
@@ -47,13 +44,6 @@ function HotDealsCarousal({data}) {
     ],
   };
 
-  const handleErrorImage = (data) => {
-    setDefaultImage((prev) => ({
-      ...prev,
-      [data.target.alt]: data.target.alt,
-      linkDefault: imgLogo,
-    }));
-  };
 
   return (
 
@@ -67,7 +57,6 @@ function HotDealsCarousal({data}) {
                            item
                         }
                         alt="hotdeals"
-                        // onError={handleErrorImage}
                       />
                     </div>
                     

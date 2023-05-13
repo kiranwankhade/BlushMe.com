@@ -26,14 +26,12 @@
   border-radius: 8px;
   overflow: hidden;
   padding: 2px;
-  /* height: 430px; */
   color: black;
   cursor: pointer;
 }
 
 .card-top h1 {
   font-size: 1rem;
-  /* margin: 15px; */
 }
 
 .card-top > img {
@@ -50,7 +48,6 @@
   margin: 10px 0px;
   display: flex;
   justify-content: space-between;
-  /* gap: 10px; */
   padding: 2px;
 }
 

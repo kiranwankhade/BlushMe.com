@@ -20,6 +20,7 @@ import EyesCatPage from "../Pages/EyesCatPage";
 import SkinCatPage from "../Pages/SkinCatPage";
 import PrivateRoute from "./PrivateRoute";
 
+
 function AllRoutes() {
   return (
     <Routes>
