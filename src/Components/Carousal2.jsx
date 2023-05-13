@@ -75,7 +75,7 @@ function Carousal2({data}) {
       variant:'subtle',
       duration: 3000,
       isClosable: true,
-      
+      position:'top-right'
     })
 
   }
@@ -104,6 +104,7 @@ function Carousal2({data}) {
       variant:'subtle',
       duration: 3000,
       isClosable: true,
+      position:'top-right'
     })
   }
 

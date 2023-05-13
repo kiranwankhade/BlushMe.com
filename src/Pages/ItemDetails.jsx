@@ -45,7 +45,7 @@ export default function ItemDetails(){
           variant:'subtle',
           duration: 3000,
           isClosable: true,
-          
+          position:'top-right'
         })
     
       }
@@ -63,7 +63,7 @@ export default function ItemDetails(){
           variant:'subtle',
           duration: 3000,
           isClosable: true,
-          
+          position:'top-right'
         })
     
         // alert("We've added this item to Cart")

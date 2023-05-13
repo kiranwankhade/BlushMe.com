@@ -98,7 +98,7 @@ const likeFuc = () => {
     variant:'subtle',
     duration: 3000,
     isClosable: true,
-    
+    position:'top-right'
   })
 
 }
@@ -114,7 +114,8 @@ const addtoCart = () => {
     description: "We've added this item to Cart",
     variant:'subtle',
     duration: 3000,
-    isClosable: true,
+    isClosable: true, 
+    position:'top-right'
   })
 }
 
