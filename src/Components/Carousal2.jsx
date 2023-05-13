@@ -68,6 +68,9 @@ function Carousal2({data}) {
     }));
   };
 
+  let firstName =  JSON.parse(localStorage.getItem("FirstName")) || "";
+  console.log("serverFirst",firstName)
+
  
   // let wishList =  localStorage.setItem("Wish-List",JSON.stringify(data))||[];
 
@@ -85,7 +88,22 @@ function Carousal2({data}) {
   }
 
   const handleWishlist = (item) => {
-    return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`,item)
+    if(firstName === ""){
+      toast({
+        // colorScheme:'yellow',
+        title: 'Please Login First',
+        status:'error',
+        duration: 3000,
+        isClosable: true,
+        position:'top-right'
+      })
+    }else{
+      likeFuc();
+      return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`,item);
+      
+
+    }
+    
   }
 
 
@@ -100,7 +118,20 @@ function Carousal2({data}) {
   }
 
   const handleAddCart = (item) => {
-    return axios.post(`https://busy-peplum-fawn.cyclic.app/cart`,item)
+    if(firstName === ""){
+      toast({
+        // colorScheme:'yellow',
+        title: 'Please Login First',
+        status:'error',
+        duration: 3000,
+        isClosable: true,
+        position:'top-right'
+      })
+    }else{
+      addtoCart()
+      return axios.post(`https://busy-peplum-fawn.cyclic.app/cart`,item)
+    }
+    
   }
 
   return (
@@ -126,11 +157,11 @@ function Carousal2({data}) {
                     <div className="card-bottom">
                       <button style={{display:'flex',gap:'10px', alignItems:'center',justifyContent:'center'}} onClick={()=> {
                         handleWishlist(item)
-                        likeFuc()
+                      
                       }}>WISHLIST<FaHeart/></button>
                       <button onClick={()=> {
                         handleAddCart(item)
-                        addtoCart()
+                        // addtoCart()
                       }}>ADD TO CART</button>
                     </div>
                   </div>

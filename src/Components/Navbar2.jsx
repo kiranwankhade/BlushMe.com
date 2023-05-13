@@ -278,7 +278,7 @@ import {
             'EYESHADOW PALETTES',
             'VALUE SETS',
           ],
-          href: '#',
+          href: '/eyes',
         },
       ],
     },
@@ -316,27 +316,27 @@ import {
         {
           label:"MOISTURIZERS",
           subLabel:[],
-          href:'#'
+          href:'/skin'
         },
         {
           label:"SUNSCREEN",
           subLabel:[],
-          href:'#'
+          href:'/skin'
         },
         {
           label:"SETTING MISTS",
           subLabel:[],
-          href:'#'
+          href:'/skin'
         },
         {
           label:"COFFEE CULTURE RANGE",
           subLabel:[],
-          href:'#'
+          href:'/skin'
         },
         {
           label:"SHEET MASK COMBO",
           subLabel:[],
-          href:'#'
+          href:'/skin'
         },
         {
           label:"CITRUS GOT REAL RANGE",

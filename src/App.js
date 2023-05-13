@@ -15,7 +15,6 @@ function App() {
        <Navbar2/>
        <AllRoutes/>
        <Footer1/>
-       {/* <Footer2/> */}
     </div>
   );
 }

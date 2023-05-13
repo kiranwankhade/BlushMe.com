@@ -18,6 +18,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import {FaArrowLeft} from "react-icons/fa"
 import { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
  
@@ -36,7 +37,7 @@ const Login = () => {
   const [mobi,setMobi] = useState(0);
 
 
-  const sendOTP = () => {
+  const sendOTP = async() => {
         if(mobi.length === 10){
           nav("/otp")
         }else{
@@ -82,7 +83,7 @@ const Login = () => {
                 {/* <div> */}
                   <InputGroup marginTop={4} >
                     <InputLeftAddon  padding={6} borderColor='#d8d8d8' fontWeight={700}  children='+91' />
-                    <Input type="number" pattern="\d*" focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} placeholder='Mobile Number'  onChange={(e)=>{setMobi(e.target.value)}}/>
+                    <Input type="number" minLength={10} max={10} focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} placeholder='Mobile Number'  onChange={(e)=>{setMobi(e.target.value)}}/>
                   
                     {/* <Input focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} type='tel' placeholder='Mobile Number' maxlength="10" minLength='10' pattern="([0-9]|[0-9]|[0-9])" onChange={(e)=>{setMobi(e.target.value)}}/> */}
                     {/* <input type="text" maxlength="10" 

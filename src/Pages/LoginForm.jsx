@@ -23,7 +23,7 @@ import {
   FormErrorMessage,
   } from "@chakra-ui/react";
   
-  import { Link, useNavigate } from "react-router-dom";
+  import { Link, json, useNavigate } from "react-router-dom";
   
   import {FaArrowLeft} from "react-icons/fa"
   import { useState } from "react";
@@ -54,10 +54,9 @@ import {
 
     const isError = email === ''
    
-    const handleWishlist = () => {
+    const handleWishlist = async() => {
         // return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`,firstName)
-        localStorage.setItem("FirstName",JSON.stringify(firstName));
-
+        
         let obj = {
             firstName,
             lastName,
@@ -115,7 +114,15 @@ import {
                 isClosable: true,
               })
         }else{
-            nav("/login")
+            try{
+                localStorage.setItem("FirstName",JSON.stringify(firstName));
+                nav("/login")
+                await axios.post(`https://busy-peplum-fawn.cyclic.app/users`,obj);
+                
+            }catch(err){
+                console.log(err)
+            }
+            
         }
         
     }

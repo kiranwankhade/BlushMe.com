@@ -53,7 +53,7 @@ import { Box, Flex, Grid, GridItem,
     
       console.log("after useEffect",items)
     
-        const hideDiv = {
+        const hideCouponDiv = {
             display:'none',
             width:'90%',
             margin:"auto",
@@ -66,8 +66,8 @@ import { Box, Flex, Grid, GridItem,
         
     
         const handleReadMore = () =>{
-            const targetDiv = document.getElementById("hideDiv");
-            // document.getElementById("hideDiv").style.display = "block"
+            const targetDiv = document.getElementById("hideCouponDiv");
+            // document.getElementById("hideCouponDiv").style.display = "block"
             if (targetDiv.style.display !== "none") {
                 targetDiv.style.display = "none";
                 setAngle(false)
@@ -189,10 +189,10 @@ import { Box, Flex, Grid, GridItem,
                                 <Divider marginTop={5} variant="dashed" borderColor="gray.500"/>
     
                                 <div style={{display:'flex', alignItems:'flex-start' , justifyItems:'flex-start' ,marginTop:'10px' , marginBottom:'10px'}} >
-                                    <h1 style={{fontSize:'18px', fontWeight:'600'}}>COUPON DETAILS</h1>
-                                    <button style={{fontSize:'20px', marginLeft:'10px',color:'#fb3380', cursor:'pointer'}} onClick={handleReadMore}>{angle ? <FaAngleDown/>:<FaAngleRight/>}</button>
+                                    
+                                    <button style={{display:'flex',alignItems:'center' , fontSize:'20px', marginLeft:'10px',color:'#fb3380', cursor:'pointer'}} onClick={handleReadMore}><span style={{fontSize:'18px', fontWeight:'600'}}>COUPON DETAILS</span> {angle ? <FaAngleDown/>:<FaAngleRight/>}</button>
                                 </div>
-                                <div id="hideDiv" style={hideDiv}>
+                                <div id="hideCouponDiv" style={hideCouponDiv}>
                                     <p style={{textAlign:'justify',fontSize:"20px"}}>Add "BLUSHME123"</p>
                                 </div>
     

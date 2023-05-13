@@ -20,17 +20,17 @@ import { useState } from "react"
 
 
 export default function Footer1(){
-    const [angle,setAngle] = useState(false);
+    const [footerAngle,setFooterAngle] = useState(false);
 
     const handleReadMore = () =>{
         const targetDiv = document.getElementById("hideDiv");
         // document.getElementById("hideDiv").style.display = "block"
         if (targetDiv.style.display !== "none") {
             targetDiv.style.display = "none";
-            setAngle(false)
+            setFooterAngle(false)
           } else {
             targetDiv.style.display = "block";
-            setAngle(true)
+            setFooterAngle(true)
           }
     }
 
@@ -52,7 +52,7 @@ export default function Footer1(){
             <Divider borderColor={'grey.900'} width='90%' margin='auto' marginTop='15px'/>
             <div style={{display:'flex', alignItems:'center' , justifyItems:'flex-start' ,width:'90%',margin:'auto',marginTop:'20px'}} >
                  
-                 <button style={{display:"flex", alignItems:'center',fontSize:'20px', marginLeft:'10px',color:'#fb3380', cursor:'pointer'}} onClick={handleReadMore}><span style={{fontSize:'18px', fontWeight:'600'}}>READ MORE ABOUT SUGAR COSMETICS</span>{angle ? <FaAngleDown/>:<FaAngleRight/>}</button>
+                 <button style={{display:"flex", alignItems:'center',fontSize:'20px', marginLeft:'10px',color:'#fb3380', cursor:'pointer'}} onClick={handleReadMore}><span style={{fontSize:'18px', fontWeight:'600'}}>READ MORE ABOUT SUGAR COSMETICS</span>{footerAngle ? <FaAngleDown/>:<FaAngleRight/>}</button>
             </div>
             <div id="hideDiv" style={hideDiv}>
                 <p style={{textAlign:'justify'}}> Enhance your beauty looks with SUGAR COSMETICS

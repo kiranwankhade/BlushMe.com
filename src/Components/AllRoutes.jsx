@@ -16,7 +16,9 @@ import Payment from "../Pages/Payment"
 import OTP from "../Pages/OTP"
 import LipsCatPage from "../Pages/LipsCatPage";
 import FaceCatPage from "../Pages/FaceCatPage";
-
+import EyesCatPage from "../Pages/EyesCatPage";
+import SkinCatPage from "../Pages/SkinCatPage";
+import PrivateRoute from "./PrivateRoute";
 
 function AllRoutes() {
   return (
@@ -24,15 +26,22 @@ function AllRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/loginForm" element={<LoginForm />} />
-      <Route path="/offer" element={<Offer />} />
-      <Route path="/wishlist" element={<Wishlist />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route path="/offer" element={<PrivateRoute>
+        <Offer />
+      </PrivateRoute>} />
+      <Route path="/wishlist" element={<PrivateRoute>
+        <Wishlist />
+      </PrivateRoute>} />
+      <Route path="/cart" element={<PrivateRoute>
+        <Cart />
+      </PrivateRoute>} />
       <Route path="/otp" element={<OTP/>} />
       <Route path="/:id" element={<ItemDetails/>} />
       <Route path="/payment" element={<Payment/>} />
       <Route path="/lips" element={<LipsCatPage/>} />
       <Route path="/face" element={<FaceCatPage/>} />
-      
+      <Route path="/eyes" element={<EyesCatPage/>} />
+      <Route path="/skin" element={<SkinCatPage/>} />
       
       <Route path="*" element={<NotFound />} />
     </Routes>

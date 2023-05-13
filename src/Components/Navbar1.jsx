@@ -46,16 +46,20 @@ import { useState,useEffect } from 'react';
         color:'#CC913F'
     }
 
-    // const [serverFirst,setServerFirst] = useState([])
+    const logOut = () => {
+      localStorage.removeItem("FirstName");
+      setServerFirst("")
+    }
+    
+    const [serverFirst,setServerFirst] = useState("")
+    console.log('serverFirst:', serverFirst)
 
-    // useEffect(() => {
-    //   fetch(`https://busy-peplum-fawn.cyclic.app/firstName`)
-    //     .then((res) => res.json())
-    //     .then((res) => setServerFirst(res))
-    //     .catch((err) => console.log(err))
-    // }, [])
-    let firstName =  JSON.parse(localStorage.getItem("FirstName")) || "";
-    console.log("serverFirst",firstName)
+    useEffect(() => {
+      let firstName =  JSON.parse(localStorage.getItem("FirstName")) || "";
+      console.log("firstName",firstName);
+      setServerFirst(firstName)
+    }, [serverFirst])
+   
 
     return (
       <Box bg={useColorModeValue('#292929', '#976d33')}>
@@ -97,10 +101,19 @@ import { useState,useEffect } from 'react';
             </Link>
            
 
-            <InputGroup size="md" alignItems={{base: 'center'}}>
-                <Input color={"#976d33"} width="450px" borderRightRadius="none" borderRight="none" _hover={'pink.200'}  variant="outline" borderColor={"#976d33"} size="md" placeholder={`Try "Liquid lipstick"`} focusBorderColor='#976d33'  _placeholder={{ opacity: 1, color: '#976d33' }}/>
+            <InputGroup  size="md" alignItems={{base: 'center'}}>
+            <InputLeftElement
+              className="InputLeft"
+              pointerEvents="none"
+              marginLeft = {2}
+              marginTop = {3}
+            
+              children={<SearchIcon className="SearchIcon" color="#976d33" />}
+              size="md"
+            />
+           <Input color={"#976d33"}  width="650px" _hover={'pink.200'}  variant="outline" borderColor={"#976d33"} size="md" placeholder={`Try "Liquid lipstick"`} focusBorderColor='#976d33'  _placeholder={{ opacity: 1, color: '#976d33'}} /> 
 
-                <Button color={"#292929"} borderLeft="none" bg={'#e6d789'} borderLeftRadius="none" _hover='#e6d789'>{<SearchIcon color="#292929"   marginRight={2}/>} Search</Button>
+                {/* <Button color={"#292929"} borderLeft="none" bg={'#e6d789'} borderLeftRadius="none" _hover='#e6d789'>{} Search</Button> */}
             </InputGroup>
   
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -108,9 +121,15 @@ import { useState,useEffect } from 'react';
                     <div style={{display:"flex", flexDirection:"row", alignItems:"center", gap:"10px"}}>
                         <Icon  style={linkStyle} as={FaUserCircle} /> 
                         {
-                          firstName==="" ?  <Link to='/loginForm' style={linkStyle}>
+                          serverFirst==="" ?  <Link to='/loginForm' style={linkStyle}>
                                                   Login/Registration
-                                              </Link> : <Text style={linkStyle}>{firstName}</Text>
+                                              </Link> : <Flex gap={5} flexDirection={'row'} alignItems={'center'}>
+                                              <Text style={linkStyle}>{serverFirst}</Text>
+                                              <Button  fontSize="20px"
+                                                color='#CC913F' padding={5} bg={'#292929'} border={'1px solid #CC913F'} _hover={{
+                                                bg:'#CC913F', border:'1px solid #292929', color:'#292929'
+                                              }} onClick={logOut}>Logout</Button>
+                                              </Flex>
                         }
                        
                     </div>
