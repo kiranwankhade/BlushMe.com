@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
     Box,
     Flex,
@@ -44,14 +45,18 @@ import { useState,useEffect } from 'react';
     }
     
     const [serverFirst,setServerFirst] = useState("")
-    console.log('serverFirst:', serverFirst)
+    
 
-    useEffect(() => {
-      let firstName =  JSON.parse(localStorage.getItem("FirstName")) || "";
-      console.log("firstName",firstName);
-      setServerFirst(firstName)
-    }, [serverFirst])
-   
+    let firstName =  JSON.parse(localStorage.getItem("FirstName")) || "";
+    console.log("firstName",firstName);
+
+    useEffect(() => { 
+      setServerFirst(firstName);
+    }, [serverFirst]);
+
+    
+    
+    console.log('serverFirst:', serverFirst);
 
     return (
       <Box bg={useColorModeValue('#292929', '#976d33')}>

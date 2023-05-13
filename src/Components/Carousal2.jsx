@@ -92,8 +92,6 @@ function Carousal2({data}) {
     }else{
       likeFuc();
       return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`,item);
-      
-
     }
     
   }

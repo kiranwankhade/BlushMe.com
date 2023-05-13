@@ -14,13 +14,21 @@ function OTP(){
     const [color,setColor] = useState("")
 
     const navigate = useNavigate();
-
+    let firstName =  JSON.parse(localStorage.getItem("FirstName")) || "";
+    console.log("firstName",firstName);
+  
+  
+  
     const handleSubmit = () =>{
         console.log("otp",otp)
         if(otp === "1234"){
             setAlertMessage("login Successfully");
             setColor("green")
-            navigate("/")
+            if(firstName !== ""){
+                navigate("/");
+                window.location.reload();
+            }
+            
         }else{
             setAlertMessage("Given otp is wrong");
             setColor("red")
