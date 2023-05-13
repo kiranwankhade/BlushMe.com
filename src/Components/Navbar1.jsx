@@ -20,7 +20,7 @@ import {
     SearchIcon
   } from '@chakra-ui/icons';
 
-  import {Link} from "react-router-dom"
+  import {Link, useNavigate} from "react-router-dom"
 
   import logo from '../BlushMeLogo.png'
 
@@ -39,9 +39,12 @@ import { useState,useEffect } from 'react';
         color:'#CC913F'
     }
 
+    let nav = useNavigate();
+    
     const logOut = () => {
       localStorage.removeItem("FirstName");
-      setServerFirst("")
+      setServerFirst("");
+      nav("/")
     }
     
     const [serverFirst,setServerFirst] = useState("")
