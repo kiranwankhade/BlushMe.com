@@ -9,18 +9,131 @@ import {
     FormControl,
     FormHelperText,
     Select,
-    Checkbox
+    Checkbox,
+    useToast
     
  } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
  
 
 export default function Payment() {
 
     let totalPrice =  JSON.parse(localStorage.getItem("priceTotal")) || "";
-    console.log("totalPrice",totalPrice)
+    console.log("totalPrice",totalPrice);
+
+    const [cardNumber,setCardNumber] = useState("");
+    const [cardName,setCardName] = useState("");
+    const [month,setMonth] = useState("");
+    const [exp,setExp] = useState("");
+    const [cvv,setCvv] = useState("");
+    const [zipCode,setZipCode] = useState("");
+    const [items,setItems] = useState([])
+    let nav = useNavigate();
+    
+    let toast = useToast();
+
+    const  deleteExp = async(id) =>  {
+        const settings = {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+        try {
+          const url = `https://busy-peplum-fawn.cyclic.app/cart/${id}`
+          const response = await fetch(url, settings)
+          const data = await response.json()
+          return data
+        } catch (e) {
+          console.log('Error', e)
+          return e
+        }
+      }
  
+    const paymentSubmit = async() => {
+        if(cardNumber === ""){  
+            toast({
+                title: 'Please Fill Card Number Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+              })
+        }else if(cardName === "" ){
+            toast({
+                title: 'Please Fill Card Name  Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+              })
+            
+        }else if(month === ""){
+            toast({
+                title: 'Please Fill Month Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+            })
+        }else if(exp === ""){
+            toast({
+                title: 'Please Fill Year  Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+              })
+        }else if(cvv === ""){
+            toast({
+                title: 'Please Fill CVV Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+            })
+        }else if(zipCode === ""){
+            toast({
+                title: 'Please Fill Zip Code  Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+              })
+        }else{
+           
+            for (const el of items) {
+                await deleteExp(el.id);
+            }
+            nav("/");
+
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+        console.log("data",items)
+    }, []);
+
+    const fetchData = async () => {
+        try {
+        const res = await axios.get(`https://busy-peplum-fawn.cyclic.app/cart`);
+        setItems(res.data);
+      
+        } catch (err) {
+        return console.log(err);
+        }
+    }
 
     return (
         <div style={{width:'80%' , margin:'auto' ,marginTop:"20px"}}>
@@ -44,15 +157,15 @@ export default function Payment() {
                     <Text color={'pink.500'} textAlign={'justify'} fontWeight={500} fontSize={20}>Card Details</Text>
                     <FormControl w='500px' isRequired>
                         <FormLabel>Card Number</FormLabel>
-                        <Input w={'100%'} borderColor={'gray.400'} type='text'  maxlength="13" minLength='13' placeholder="Enter your Card Number"  />
+                        <Input w={'100%'} borderColor={'gray.400'} type='text'  maxlength="13" minLength='13' placeholder="Enter your Card Number" onChange={(e)=> setCardNumber(e.target.value)}/>
                         <FormHelperText textAlign={'justify'}>We'll never share your Card Number.</FormHelperText>
 
                         <FormLabel marginTop={5}>Name on Card</FormLabel>
-                        <Input w={'100%'} borderColor={'gray.400'} type='text' placeholder="Enter your full Name on Card "  />
+                        <Input w={'100%'} borderColor={'gray.400'} type='text' placeholder="Enter your full Name on Card "  onChange={(e)=> setCardName(e.target.value)}/>
 
                         <FormLabel marginTop={5}>Expiry Date</FormLabel>
                         <Flex flexDirection={'row'} gap={5}>
-                            <Select placeholder='Month'>
+                            <Select placeholder='Month' onChange={(e)=> setMonth(e.target.value)} >
                                 <option value='option1'>January</option>
                                 <option value='option2'>February</option>
                                 <option value='option3'>March</option>
@@ -67,7 +180,7 @@ export default function Payment() {
                                 <option value='option12'>December</option>
                             </Select>
 
-                            <Select placeholder='Year'>
+                            <Select placeholder='Year' onChange={(e)=> setExp(e.target.value)}>
                                 <option value='option1'>2020</option>
                                 <option value='option2'>2021</option>
                                 <option value='option3'>2022</option>
@@ -75,12 +188,12 @@ export default function Payment() {
                                 <option value='option5'>2024</option>
                             </Select>
                             
-                            <Input w={'100%'} borderColor={'gray.400'} type='text' placeholder="Enter your CVV "   maxlength="3" minLength='3'/>
+                            <Input w={'100%'} borderColor={'gray.400'} type='text' placeholder="Enter your CVV "   maxlength="3" minLength='3'  onChange={(e)=> setCvv(e.target.value)}/>
 
                         </Flex>
 
                         <FormLabel marginTop={5}>Billing Zip Code</FormLabel>
-                        <Input w={'100%'} borderColor={'gray.400'} type='text' placeholder="Enter your Billing Zip Code* "  />
+                        <Input w={'100%'} borderColor={'gray.400'} type='text' placeholder="Enter your Billing Zip Code* "  onChange={(e)=> setZipCode(e.target.value)} />
                         
                         <Text textAlign={'justify'}>
                             <Checkbox marginTop={5} colorScheme='green' defaultChecked>
@@ -88,7 +201,7 @@ export default function Payment() {
                             </Checkbox>
                         </Text>
 
-                        <Link to={"/"}><Button
+                        <Button
                                 type="submit"
                                 loadingText="Submitting"
                                 size='md'
@@ -99,9 +212,9 @@ export default function Payment() {
                                 _hover={{
                                 bg: '#fb3380',
                                 }}
-                                marginTop="20px">
+                                marginTop="20px" onClick={paymentSubmit}>
                             SUBMIT
-                        </Button></Link>
+                        </Button>
                         
                     </FormControl>
                 </Box>

@@ -9,10 +9,12 @@ import {
   FormLabel,
   Button,
   Divider ,
-  Checkbox
+  useToast,
+  Checkbox,
+  Toast
 } from "@chakra-ui/react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {FaArrowLeft} from "react-icons/fa"
 import { useState } from "react";
@@ -26,7 +28,28 @@ const Login = () => {
 
   }
 
-  const [mobi,setMobi] = useState()
+
+  let nav = useNavigate();
+
+  let toast = useToast();
+
+  const [mobi,setMobi] = useState(0);
+
+
+  const sendOTP = () => {
+        if(mobi.length === 10){
+          nav("/otp")
+        }else{
+          toast({
+            title: 'Please Enter 10 digit Number',
+            description: "You Type wrong Number",
+            status: 'error',
+            duration: 2000,
+            position: "top-right",
+            isClosable: true,
+          })
+        }
+  }
 
     return (
       <div style={ {width:'100%', display:"flex" , flexDirection:'row'}}>
@@ -59,7 +82,7 @@ const Login = () => {
                 {/* <div> */}
                   <InputGroup marginTop={4} >
                     <InputLeftAddon  padding={6} borderColor='#d8d8d8' fontWeight={700}  children='+91' />
-                    <Input focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} type='text' placeholder='Mobile Number' maxlength="10" minLength='10' onChange={(e)=>{setMobi(e.target.value)}}/>
+                    <Input type="number" pattern="\d*" focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} placeholder='Mobile Number'  onChange={(e)=>{setMobi(e.target.value)}}/>
                   
                     {/* <Input focusBorderColor="#d8d8d8" borderColor='#d8d8d8' borderLeft={'none'} padding={6} type='tel' placeholder='Mobile Number' maxlength="10" minLength='10' pattern="([0-9]|[0-9]|[0-9])" onChange={(e)=>{setMobi(e.target.value)}}/> */}
                     {/* <input type="text" maxlength="10" 
@@ -72,8 +95,9 @@ const Login = () => {
                   <Text width='90%' margin='auto' color='#9e99a0'>Registering for this site allows you to access your order status and history. Just fill in the above fields, and we'll get a new account set up for you in no time. We will only ask you for information necessary to make the purchase process faster and easier.</Text>
               </div>
               
-              <Link to={'/otp'} >
-                <Button backgroundColor='black' color='white' marginTop='20px' variant='solid' _hover={'black'} disabled={!mobi}>SEND ME OTP</Button></Link>
+              {/* <Link to={'/otp'} > */}
+                <Button backgroundColor='black' color='white' marginTop='20px' variant='solid' _hover={'black'} disabled={!mobi} onClick={sendOTP}>SEND ME OTP</Button>
+                {/* </Link> */}
               
               <Divider borderColor={'grey'} width='90%' margin='auto' marginTop='20px'/>
 

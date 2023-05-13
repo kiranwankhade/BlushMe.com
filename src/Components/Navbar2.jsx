@@ -234,6 +234,7 @@ import {
     );
   };
   
+  // eslint-disable-next-line no-sparse-arrays
   const NAV_ITEMS = [
     {
       label: 'MAKEUP',
@@ -249,7 +250,7 @@ import {
             'VALUE SETS',
             'GIFTING'
           ],
-          href: '#',
+          href: '/lips',
         },
         {
           label: 'FACE',
@@ -264,7 +265,7 @@ import {
             'FACE PALETTES',
             'VALUE SETS',
           ],
-          href: '#',
+          href: '/face',
         },
         {
           label: 'EYES',

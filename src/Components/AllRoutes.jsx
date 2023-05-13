@@ -14,6 +14,8 @@ import LoginForm from "../Pages/LoginForm"
 import Payment from "../Pages/Payment"
 
 import OTP from "../Pages/OTP"
+import LipsCatPage from "../Pages/LipsCatPage";
+import FaceCatPage from "../Pages/FaceCatPage";
 
 
 function AllRoutes() {
@@ -28,6 +30,8 @@ function AllRoutes() {
       <Route path="/otp" element={<OTP/>} />
       <Route path="/:id" element={<ItemDetails/>} />
       <Route path="/payment" element={<Payment/>} />
+      <Route path="/lips" element={<LipsCatPage/>} />
+      <Route path="/face" element={<FaceCatPage/>} />
       
       
       <Route path="*" element={<NotFound />} />

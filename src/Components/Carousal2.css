@@ -25,8 +25,8 @@
   background: white;
   border-radius: 8px;
   overflow: hidden;
-
-  height: 430px;
+  padding: 2px;
+  /* height: 430px; */
   color: black;
   cursor: pointer;
 }
@@ -51,7 +51,7 @@
   display: flex;
   justify-content: space-between;
   /* gap: 10px; */
-  padding: 5px;
+  padding: 2px;
 }
 
 .card-bottom>button{

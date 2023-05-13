@@ -12,6 +12,7 @@ import axios from 'axios';
 
 import {useToast,Text } from "@chakra-ui/react"
 import { Link, useNavigate } from 'react-router-dom';
+import StarRatings from './StarRatings';
 
 
 
@@ -71,22 +72,6 @@ function Carousal2({data}) {
   // let wishList =  localStorage.setItem("Wish-List",JSON.stringify(data))||[];
 
   const likeFuc = () => {
-    // if(id){
-    //   setLike(true);
-    // }else{
-    //   setLike(false)
-    // }
-   
-    // wishList.push(item);
-    
-    // if(like == true){
-    //   document.getElementById('heartButton').innerHTML = <FaHeart/>
-    // }else{
-    //   document.getElementById('heartButton').innerHTML = <FaRegHeart/>
-    // }
-   
-    // console.log("wishlist",wishList);
-    // localStorage.setItem("Wish-List",JSON.stringify(wishList));
     toast({
       // colorScheme:'yellow',
       title: 'Added to wishlist',
@@ -106,16 +91,12 @@ function Carousal2({data}) {
 
   const addtoCart = () => {
     toast({
-      // colorScheme:'yellow',
       title: 'Added to Cart',
       description: "We've added this item to Cart",
       variant:'subtle',
       duration: 3000,
       isClosable: true,
-      
     })
-
-    // alert("We've added this item to Cart")
   }
 
   const handleAddCart = (item) => {
@@ -138,8 +119,9 @@ function Carousal2({data}) {
                         alt={item.name}
                         onError={handleErrorImage}
                       />
-                      <Text width={"90%"} margin="auto" noOfLines={2} marginTop={10} isTruncated='true'>{item.name}</Text>
+                      <Text width={"90%"} margin="auto" noOfLines={1} marginTop={10} isTruncated='true'>{item.name}</Text>
                       <Text marginTop={5} fontSize={25} fontWeight={600} color='#fc2779'>₹ {item.price}</Text>
+                      <Text><StarRatings value={item.ratings} /></Text>
                     </div></Link>
                     <div className="card-bottom">
                       <button style={{display:'flex',gap:'10px', alignItems:'center',justifyContent:'center'}} onClick={()=> {

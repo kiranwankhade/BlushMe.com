@@ -107,6 +107,7 @@ export default function Home() {
 
   const [getData,setGetData] = useState([]);
   
+  
   useEffect(() => {
     fetchData();
     console.log("data",getData)

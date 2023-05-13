@@ -20,7 +20,7 @@ function OTP(){
         if(otp === "1234"){
             setAlertMessage("login Successfully");
             setColor("green")
-            navigate("/loginForm")
+            navigate("/")
         }else{
             setAlertMessage("Given otp is wrong");
             setColor("red")
@@ -47,10 +47,10 @@ function OTP(){
             <Text fontSize={18} color={'#292929'} marginRight='140px'>One Time Password</Text>
             <HStack marginTop={'20px'} marginLeft={'460px'}>
                     <PinInput onComplete={(e)=>  setOtp(e)}>
-                        <PinInputField />
-                        <PinInputField />
-                        <PinInputField />
-                        <PinInputField />
+                        <PinInputField type="password"/>
+                        <PinInputField type="password"/>
+                        <PinInputField type="password"/>
+                        <PinInputField type="password"/>
                     </PinInput>
             </HStack>
             <Text fontSize={20} marginTop={2} color={color}>{alertMessage}</Text>

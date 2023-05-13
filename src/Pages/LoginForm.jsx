@@ -17,9 +17,13 @@ import {
     Stack,
     Heading,
     useColorModeValue,
+    
+  useToast,
+  FormHelperText,
+  FormErrorMessage,
   } from "@chakra-ui/react";
   
-  import { Link } from "react-router-dom";
+  import { Link, useNavigate } from "react-router-dom";
   
   import {FaArrowLeft} from "react-icons/fa"
   import { useState } from "react";
@@ -34,16 +38,86 @@ import {
       width:'50%',
       backgroundImage: "url(" + ' https://media.sugarcosmetics.com/upload/loginPageBackGroundTexture.png' + ")"
     }
+
+
+    let nav = useNavigate ();
+    
+  let toast = useToast();
   
     const [showPassword, setShowPassword] = useState(false);
 
     const [firstName,setFirstName] = useState("")
+    const [lastName,setLastName] = useState("")
+    const [email,setEmail] = useState("")
+    const [pass,setPass] = useState("")
     
+
+    const isError = email === ''
    
-    const handleWishlist = (firstName) => {
+    const handleWishlist = () => {
         // return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`,firstName)
         localStorage.setItem("FirstName",JSON.stringify(firstName));
 
+        let obj = {
+            firstName,
+            lastName,
+            email,
+            pass
+        }
+
+        if(firstName === ""){  
+            toast({
+                title: 'Please Fill First Name Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+              })
+        }else if(lastName === "" ){
+            toast({
+                title: 'Please Fill Last Name  Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+              })
+            
+        }else if(email === ""){
+            toast({
+                title: 'Please Fill Email  Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+            })
+        }else if(email !== "" && !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email)){
+           
+                toast({
+                    title: 'Please Enter Valid Email',
+                    description: "All Fields are mandatory",
+                    status: 'error',
+                    duration: 2000,
+                    position: "top-right",
+                    isClosable: true,
+                  })
+            
+            // console.log("xcvbhnjmk",(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/).test(email));
+        }else if(pass === ""){
+            toast({
+                title: 'Please Fill Password  Field',
+                description: "All Fields are mandatory",
+                status: 'error',
+                duration: 2000,
+                position: "top-right",
+                isClosable: true,
+              })
+        }else{
+            nav("/login")
+        }
+        
     }
 
     return (
@@ -64,8 +138,8 @@ import {
                 </div>
                 <Flex
                     minH={'100vh'}
-                    align={'center'}
-                    justify={'center'}
+                    alignItems={'center'}
+                    justifyContent={'center'}
                     >
                     <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
                         <Stack align={'center'}>
@@ -81,7 +155,7 @@ import {
                         bg={useColorModeValue('white', 'gray.700')}
                         boxShadow={'lg'}
                         p={8}>
-                        <Stack spacing={4}>
+                        <Stack alignItems={'center'} spacing={4}>
                             <HStack>
                             <Box>
                                 <FormControl id="firstName" isRequired>
@@ -90,20 +164,27 @@ import {
                                 </FormControl>
                             </Box>
                             <Box>
-                                <FormControl id="lastName">
+                                <FormControl id="lastName" isRequired>
                                 <FormLabel>Last Name</FormLabel>
-                                <Input type="text" />
+                                <Input type="text"  onChange={(e)=> setLastName(e.target.value)}/>
                                 </FormControl>
                             </Box>
                             </HStack>
                             <FormControl id="email" isRequired>
                             <FormLabel>Email address</FormLabel>
-                            <Input type="email" />
+                            <Input type="email" value={email}  onChange={(e)=> setEmail(e.target.value)} required/>
+                            {/* {!isError ? (
+                                <FormHelperText>
+                                Enter the email you'd like to receive the letter on.
+                                </FormHelperText>
+                            ) : (
+                                <FormErrorMessage>Email is required.</FormErrorMessage>
+                            )} */}
                             </FormControl>
                             <FormControl id="password" isRequired>
                             <FormLabel>Password</FormLabel>
                             <InputGroup>
-                                <Input type={showPassword ? 'text' : 'password'} />
+                                <Input type={showPassword ? 'text' : 'password'} maxLength={8} minLength={8} onChange={(e)=> setPass(e.target.value)}/>
                                 <InputRightElement h={'full'}>
                                 <Button
                                     variant={'ghost'}
@@ -116,7 +197,7 @@ import {
                             </InputGroup>
                             </FormControl>
                             <Stack spacing={10} pt={2}>
-                            <Link to={"/"}><Button
+                            <Button
                                 loadingText="Submitting"
                                 size='md'
                                 height='48px'
@@ -125,9 +206,9 @@ import {
                                 color={'white'}
                                 _hover={{
                                 bg: '#fb3380',
-                                }} onClick={handleWishlist(firstName)}>
+                                }} onClick={handleWishlist}>
                             SUBMIT
-                            </Button></Link>
+                            </Button>
                             </Stack>
                             <Stack pt={6}>
                             <Text align={'center'}>

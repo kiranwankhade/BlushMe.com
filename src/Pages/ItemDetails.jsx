@@ -178,8 +178,8 @@ export default function ItemDetails(){
                     <Divider variant="dashed" borderColor="gray.500"/>
                     
                     <div style={{display:'flex', alignItems:'center' , justifyItems:'flex-start' ,marginTop:'10px' , marginBottom:'10px'}} >
-                        <h1 style={{fontSize:'18px', fontWeight:'600'}}>Description</h1>
-                        <button style={{fontSize:'20px', marginLeft:'10px',color:'#fb3380', cursor:'pointer'}} onClick={handleReadMore}>{angle ? <FaAngleDown/>:<FaAngleRight/>}</button>
+                        
+                        <button style={{display:"flex", alignItems:'center', fontSize:'20px', marginLeft:'10px',color:'#fb3380', cursor:'pointer'}} onClick={handleReadMore}><span style={{fontSize:'18px', fontWeight:'600'}}>Description</span>{angle ? <FaAngleDown/>:<FaAngleRight/>}</button>
                     </div>
                     <div id="disHideDiv" style={hideDiv}>
                         <p style={{textAlign:'justify'}}>{description}</p>

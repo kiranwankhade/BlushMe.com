@@ -108,7 +108,7 @@ import { useState,useEffect } from 'react';
                     <div style={{display:"flex", flexDirection:"row", alignItems:"center", gap:"10px"}}>
                         <Icon  style={linkStyle} as={FaUserCircle} /> 
                         {
-                          firstName==="" ?  <Link to='/login' style={linkStyle}>
+                          firstName==="" ?  <Link to='/loginForm' style={linkStyle}>
                                                   Login/Registration
                                               </Link> : <Text style={linkStyle}>{firstName}</Text>
                         }

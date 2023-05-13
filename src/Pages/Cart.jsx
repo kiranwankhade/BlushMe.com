@@ -107,7 +107,7 @@ import { Box, Flex, Grid, GridItem,
         }
     
         
-        const handleRemove = (id) => {
+        const handleRemove = async(id) => {
             return axios.delete(`https://busy-peplum-fawn.cyclic.app/cart/${id}`);
         }
 
@@ -146,18 +146,18 @@ import { Box, Flex, Grid, GridItem,
                              <Text width={"80%"} fontSize={25} margin='auto' > Cart is Empty </Text>
                              <Link to={'/'}><Button  width={"10%"}  margin='auto' display={'block'}  marginBottom={8} marginTop={8} bg={'black'} color='white' padding={2} _hover={'#00000'}> GO HOME</Button></Link>
                         </div> : 
-                        <Flex  gap='5' width={"95%"} margin='auto'>
-                            <div style={{width:'100%' , margin:'auto',display:'grid' , gridTemplateColumns:'repeat(3,1fr)' , gap:'5px',marginTop:'30px' ,marginBottom:'20px',flex:'6'}}>
+                        <Flex  gap='8' width={"95%"} margin='auto'>
+                            <div style={{width:'100%' , margin:'auto',display:'grid' , gridTemplateColumns:'repeat(2,1fr)' , gap:'5px',marginTop:'30px' ,marginBottom:'20px',flex:'6'}}>
                             {
                                 items.map((el)=> (
-                                    <div style={{width:'100%' , boxShadow:" rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+                                    <div style={{width:'100%' , margin:'10px 0px', boxShadow:" rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
                                         <div >
                                         <img
-                                            style={{display:'block', margin:'auto',width:'120px'}}
+                                            style={{display:'block', margin:'auto',width:'120px',height:'120px'}}
                                             src={el.image}
                                             alt="cartImage"
                                         />
-                                        <Text width={"60%"} margin="auto" noOfLines={3} marginTop={1} isTruncated='true'>{el.name}</Text>
+                                        <Text width={"60%"} margin="auto" noOfLines={2} marginTop={1} isTruncated='true'>{el.name}</Text>
                                         <Text marginTop={5} fontSize={25} fontWeight={600} color='#fc2779'>₹ {el.price}</Text>
                                         </div>
                                         <div style={{width:'80%',margin:'auto'}}>
