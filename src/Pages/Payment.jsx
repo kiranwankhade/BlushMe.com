@@ -44,7 +44,7 @@ export default function Payment() {
           }
         }
         try {
-          const url = `https://busy-peplum-fawn.cyclic.app/cart/${id}`
+          const url = `https://cyclicbackend.onrender.com/cart/${id}`
           const response = await fetch(url, settings)
           const data = await response.json()
           return data
@@ -127,7 +127,7 @@ export default function Payment() {
 
     const fetchData = async () => {
         try {
-        const res = await axios.get(`https://busy-peplum-fawn.cyclic.app/cart`);
+        const res = await axios.get(`https://cyclicbackend.onrender.com/cart`);
         setItems(res.data);
       
         } catch (err) {

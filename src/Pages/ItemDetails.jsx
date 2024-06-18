@@ -25,7 +25,7 @@ export default function ItemDetails(){
     const { id } = useParams()
     const [itemDetail, setItemDetail] = useState({})
     useEffect(() => {
-        fetch(`https://busy-peplum-fawn.cyclic.app/products/${id}`)
+        fetch(`https://cyclicbackend.onrender.com/products/${id}`)
           .then((res) => res.json())
           .then((res) => setItemDetail(res))
           .catch((err) => console.log(err))
@@ -51,7 +51,7 @@ export default function ItemDetails(){
       }
     
       const handleWishlist = (item) => {
-        return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`,item)
+        return axios.post(`https://cyclicbackend.onrender.com/wishList`,item)
       }
     
     

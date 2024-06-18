@@ -91,7 +91,7 @@ function Carousal2({data}) {
       })
     }else{
       likeFuc();
-      return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`,item);
+      return axios.post(`https://cyclicbackend.onrender.com/wishList`,item);
     }
     
   }
@@ -119,7 +119,7 @@ function Carousal2({data}) {
       })
     }else{
       addtoCart()
-      return axios.post(`https://busy-peplum-fawn.cyclic.app/cart`,item)
+      return axios.post(`https://cyclicbackend.onrender.com/cart`,item)
     }
     
   }

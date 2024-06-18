@@ -24,7 +24,7 @@ import { Box, Flex, Grid, GridItem,
     
         const fetchData = async () => {
             try {
-            const res = await axios.get(`https://busy-peplum-fawn.cyclic.app/wishList`);
+            const res = await axios.get(`https://cyclicbackend.onrender.com/wishList`);
             setItems(res.data);
            
             } catch (err) {
@@ -36,7 +36,7 @@ import { Box, Flex, Grid, GridItem,
     
         
         const handleRemove = (id) => {
-            return axios.delete(`https://busy-peplum-fawn.cyclic.app/wishList/${id}`);
+            return axios.delete(`https://cyclicbackend.onrender.com/wishList/${id}`);
         }
 
         const removeFuc = (id) => {

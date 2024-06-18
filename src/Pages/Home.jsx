@@ -115,7 +115,7 @@ export default function Home() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`https://busy-peplum-fawn.cyclic.app/products`);
+      const res = await axios.get(`https://cyclicbackend.onrender.com/products`);
       setGetData(res.data);
     } catch (err) {
       return console.log(err);

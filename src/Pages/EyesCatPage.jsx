@@ -17,7 +17,7 @@ const EyesCatPage = () => {
   const fetchData = async () => {
     try {
       const res = await axios.get(
-        `https://busy-peplum-fawn.cyclic.app/products`
+        `https://cyclicbackend.onrender.com/products`
       );
       let data = res.data;
 
@@ -40,7 +40,7 @@ const EyesCatPage = () => {
 
   async function onchangePrice(e){
     try{
-        let res = await fetch(`https://busy-peplum-fawn.cyclic.app/products`);
+        let res = await fetch(`https://cyclicbackend.onrender.com/products`);
         let data = await res.json();
   
         let tempArray = data.filter((el) => {
@@ -67,7 +67,7 @@ const EyesCatPage = () => {
 
 async function onchangeRatings(e){
   try{
-      let res = await fetch(`https://busy-peplum-fawn.cyclic.app/products`);
+      let res = await fetch(`https://cyclicbackend.onrender.com/products`);
       let data = await res.json();
 
       let tempArray = data.filter((el) => {
@@ -105,7 +105,7 @@ const likeFuc = () => {
 }
 
 const handleWishlist = (item) => {
-  return axios.post(`https://busy-peplum-fawn.cyclic.app/wishList`,item)
+  return axios.post(`https://cyclicbackend.onrender.com/wishList`,item)
 }
 
 
@@ -121,7 +121,7 @@ const addtoCart = () => {
 }
 
 const handleAddCart = (item) => {
-  return axios.post(`https://busy-peplum-fawn.cyclic.app/cart`,item)
+  return axios.post(`https://cyclicbackend.onrender.com/cart`,item)
 }
 const Star = ({ marked, starId }) => {
   return (
