@@ -33,7 +33,7 @@ npm start
 
 ## Link for Visit
 
-[Netlify link](https://kaleidoscopic-gecko-521a5b.netlify.app/)
+[Deployed link](https://blush-me-com.vercel.app/)
 
 [Github Link](https://github.com/kiranwankhade/abiding-flame-8727)
 
